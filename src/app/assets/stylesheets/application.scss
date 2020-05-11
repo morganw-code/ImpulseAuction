@@ -1,0 +1,8 @@
+@import "bootstrap";
+
+$red: #FF0000;
+
+.grid {
+    display: grid;
+    border: 1px solid $red;
+}
