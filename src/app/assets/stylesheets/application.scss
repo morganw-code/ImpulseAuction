@@ -1,8 +1,47 @@
 @import "bootstrap";
+@import "variables";
 
-$red: #FF0000;
 
-.grid {
-    display: grid;
-    border: 1px solid $red;
+@media (min-width: 576px) { }
+
+@media (min-width: 768px) { }
+
+@media (min-width: 992px) { }
+
+@media (min-width: 1200px) { }
+
+@mixin flex-center($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin reset() {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    @include reset();
+    background-color: map-get($colors, black-ish);
+}
+
+.sold-scroller {
+    .row {
+        border: 1px solid $red;
+        overflow-x: auto;
+        white-space: nowrap;
+        height: 256px;
+        .col-sm-4 {
+            &:nth-child(even) {
+                background-color: map-get($dark, a);
+            }
+
+            &:nth-child(odd) {
+                background-color: map-get($dark, b);
+            }
+        }
+    }
 }
