@@ -1,26 +1,32 @@
 <div class="container-fluid">
-    <div class="row text-center flex-nowrap" id="sold-scroller">
-        <% for listing in @listings %>
-            <! –– listings that have sold will have an active id of 0 ––>
-            <% if(listing.active == 0) %>
-                <div class="col-sm-4 card-sold"><%= listing.title %></div>
+    <div id="refresh-ended">
+        <div class="row row-min-small text-center flex-nowrap">
+            <% for listing in @listings %>
+                <! –– listings that have sold will have an active id of 0 ––>
+                <% if(listing.active == 0) %>
+                    <div class="col-sm-4 card-sold"><%= listing.title %></div>
+                <% end %>
             <% end %>
-        <% end %>
+        </div>
     </div>
-    <div class="row row-min text-center flex-nowrap">
-        <% for listing in @listings %>
-            <! –– listings that are ending soon will have an active id of 2 ––>
-            <% if(listing.active == 2) %>
-                <div class="col-sm-4 card-ending"><%= listing.title %></div>
+    <div id="refresh-ending">
+        <div class="row row-min-normal text-center flex-nowrap">
+            <% for listing in @listings %>
+                <! –– listings that are ending soon will have an active id of 2 ––>
+                <% if(listing.active == 2) %>
+                    <div class="col-sm-4 card-ending"><%= listing.title %></div>
+                <% end %>
             <% end %>
-        <% end %>
+        </div>
     </div>
-    <div class="row row-min">
-        <% for listing in @listings %>
-            <! –– listings that are active will have an active id of 1 ––>
-            <% if(listing.active == 1) %>
-                <div class="col-sm-4 card-active"><%= listing.title %></div>
+    <div id="refresh-active">
+        <div class="row row-min-normal", id="new-listings">
+            <% for listing in @listings %>
+                <! –– listings that are active will have an active id of 1 ––>
+                <% if(listing.active == 1) %>
+                    <div class="col-sm-4 card-active"><%= listing.title %></div>
+                <% end %>
             <% end %>
-        <% end %>
+        </div>
     </div>
 </div>

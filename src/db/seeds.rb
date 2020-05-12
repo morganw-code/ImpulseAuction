@@ -1,16 +1,12 @@
 Listing.destroy_all()
 
-# for i in 100.times do
-#     active = rand(3)
-#     Listing.create(
-#         :title => Faker::Commerce.product_name,
-#         :description => "lorem ipsum",
-#         :active => active
-#     )
-# end
-
-Listing.create(
-    :title => Faker::Commerce.product_name,
-    :description => "lorem ipsum",
-    :active => 1
-)
+for i in 1000.times do
+    active = [1, 2].sample
+    Listing.create(
+        :title => Faker::Commerce.product_name,
+        :description => "lorem ipsum",
+        :active => active,
+        # trick the scheduler task
+        :fire_time => Time.now + rand(121)
+    )
+end

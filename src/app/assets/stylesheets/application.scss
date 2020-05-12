@@ -30,7 +30,12 @@ body {
 
 .container-fluid {
     scroll-behavior: smooth;
-    .row-min {
+
+    .row-min-small {
+        min-height: 128px;
+    }
+
+    .row-min-normal {
         min-height: 256px;
     }
 
@@ -54,6 +59,9 @@ body {
         }
 
         .card-sold, .card-ending, .card-active {
+            overflow: hidden;
+            text-overflow:ellipsis;
+            
             &:nth-child(even) {
                 background-color: map-get($dark, a);
             }

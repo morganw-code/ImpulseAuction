@@ -18,3 +18,17 @@
 //= require rails-ujs
 //= require popper
 //= require bootstrap
+
+//= require cable
+
+// couldn't figure out how to run jquery outside of application.js
+
+$( document ).ready(function() {
+    function update() {
+        $("#refresh-ended").load(document.URL + " #refresh-ended");
+        $("#refresh-ending").load(document.URL + " #refresh-ending");
+        $("#refresh-active").load(document.URL + " #refresh-active");
+    }
+
+    setInterval(update, 5000);
+});
