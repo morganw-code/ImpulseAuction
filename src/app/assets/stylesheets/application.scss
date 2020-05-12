@@ -28,13 +28,28 @@ body {
     background-color: map-get($colors, black-ish);
 }
 
-.sold-scroller {
+.container-fluid {
+    scroll-behavior: smooth;
     .row {
         border: 1px solid $red;
         overflow-x: auto;
         white-space: nowrap;
-        height: 256px;
-        .col-sm-4 {
+        color: white;
+
+        .card-sold {
+            height: 128px;
+            max-width: 128px;
+        }
+
+        .card-ending {
+            max-width: 256px;
+        }
+
+        .card-ending, .card-active {
+            height: 256px;
+        }
+
+        .card-sold, .card-ending, .card-active {
             &:nth-child(even) {
                 background-color: map-get($dark, a);
             }

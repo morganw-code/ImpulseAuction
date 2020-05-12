@@ -1,13 +1,26 @@
-<div class="container-fluid sold-scroller">
+<div class="container-fluid">
+    <div class="row text-center flex-nowrap" id="sold-scroller">
+        <% for listing in @listings %>
+            <! –– listings that have sold will have an active id of 0 ––>
+            <% if(listing.active == 0) %>
+                <div class="col-sm-4 card-sold"><%= listing.title %></div>
+            <% end %>
+        <% end %>
+    </div>
     <div class="row text-center flex-nowrap">
-        <div class="col-sm-4 card">1</div>
-        <div class="col-sm-4 card">2</div>
-        <div class="col-sm-4 card">3</div>
-        <div class="col-sm-4 card">4</div>
-        <div class="col-sm-4 card">5</div>
-        <div class="col-sm-4 card">6</div>
-        <div class="col-sm-4 card">7</div>
-        <div class="col-sm-4 card">8</div>
-        <div class="col-sm-4 card">9</div>
+        <% for listing in @listings %>
+            <! –– listings that are ending soon will have an active id of 2 ––>
+            <% if(listing.active == 2) %>
+                <div class="col-sm-4 card-ending"><%= listing.title %></div>
+            <% end %>
+        <% end %>
+    </div>
+    <div class="row">
+        <% for listing in @listings %>
+            <! –– listings that are active will have an active id of 1 ––>
+            <% if(listing.active == 1) %>
+                <div class="col-sm-4 card-active"><%= listing.title %></div>
+            <% end %>
+        <% end %>
     </div>
 </div>
