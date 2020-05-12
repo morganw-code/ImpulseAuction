@@ -30,6 +30,10 @@ body {
 
 .container-fluid {
     scroll-behavior: smooth;
+    .row-min {
+        min-height: 256px;
+    }
+
     .row {
         border: 1px solid $red;
         overflow-x: auto;

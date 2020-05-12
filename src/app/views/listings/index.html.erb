@@ -7,7 +7,7 @@
             <% end %>
         <% end %>
     </div>
-    <div class="row text-center flex-nowrap">
+    <div class="row row-min text-center flex-nowrap">
         <% for listing in @listings %>
             <! –– listings that are ending soon will have an active id of 2 ––>
             <% if(listing.active == 2) %>
@@ -15,7 +15,7 @@
             <% end %>
         <% end %>
     </div>
-    <div class="row">
+    <div class="row row-min">
         <% for listing in @listings %>
             <! –– listings that are active will have an active id of 1 ––>
             <% if(listing.active == 1) %>
