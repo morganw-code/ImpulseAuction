@@ -9,7 +9,7 @@ user.save!
 
 id = User.find_by_email("admin@admin.com").id
 
-for i in 500.times do
+for i in 50.times do
     active = [1, 2].sample
     Listing.create(
         :title => Faker::Commerce.product_name,

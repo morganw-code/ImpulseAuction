@@ -17,14 +17,14 @@ scheduler.every '1s' do
             # set listing as ended
             listing.update(
                 :active => 0,
+                :sold => 0
             )
         end
         # check if 5 seconds has passed since ended && listing should relist
-        if(listing.active == 0 && listing.relist == 1 && Time.now > listing.updated_at + 5.seconds)
+        if(listing.active == 0 &&  listing.relist == 1 && Time.now > listing.updated_at + 5.seconds)
             # relist
             listing.update(
                 :active => 1,
-                :sold => 0
             )
         end
     end
