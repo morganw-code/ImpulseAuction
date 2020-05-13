@@ -26,6 +26,14 @@
 body {
     @include reset();
     background-color: map-get($colors, black-ish);
+    color: #FFF;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
 
 .listing-holder {
