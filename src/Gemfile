@@ -72,3 +72,5 @@ gem "rufus-scheduler", "~> 3.6"
 gem "redis", "~> 4.1"
 
 gem "money", "~> 6.13"
+
+gem "devise", "~> 4.7"
