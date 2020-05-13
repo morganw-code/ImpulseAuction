@@ -9,6 +9,8 @@
                         <%= listing.title %>
                         <br>
                         $ <%= Money.new(listing.starting_price, 'AUD') %>
+                        <br>
+                        <%= (Time.now - listing.updated_at).to_i %>s
                     </div>
                 <% end %>
             <% end %>
@@ -38,6 +40,8 @@
                         <%= listing.title %>
                         <br>
                         $ <%= Money.new(listing.starting_price, 'AUD') %>
+                        <br>
+                        <%= (Time.now - listing.updated_at).to_i %>s
                     </div>
                 <% end %>
             <% end %>
@@ -53,6 +57,8 @@
                         <%= listing.title %>
                         <br>
                         $ <%= Money.new(listing.starting_price, 'AUD') %>
+                        <br>
+                        <%= (Time.now - listing.updated_at).to_i %>s
                     </div>
                 <% end %>
             <% end %>

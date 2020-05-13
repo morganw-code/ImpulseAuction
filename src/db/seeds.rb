@@ -7,7 +7,9 @@ user.password = "admin123"
 user.encrypted_password = "$2a$11$CGmdaAQM/m5DA9MwKJN5/eu1f9zzmVS1kb4WgP/6.ZOh.gGswWXIS"
 user.save!
 
-for i in 1000.times do
+id = User.find_by_email("admin@admin.com").id
+
+for i in 500.times do
     active = [1, 2].sample
     Listing.create(
         :title => Faker::Commerce.product_name,
@@ -18,6 +20,6 @@ for i in 1000.times do
         :sold => 0,
         :relist => 1,
         :starting_price => rand(500),
-        :user_id => 1
+        :user_id => id
     )
 end
