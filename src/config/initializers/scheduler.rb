@@ -1,19 +1,32 @@
 require 'rufus-scheduler'
 scheduler = Rufus::Scheduler::singleton
 
-scheduler.every '0.5s' do
+scheduler.every '5s' do
     @listings = Listing.all
     #check if listing has been 
     for listing in @listings
         # check if listing has been up for more than 40 seconds
-        if(listing.active == 1 && listing.fire_time < 40.seconds.ago)
-            listing.update(active: 2, fire_time: Time.now) # set listing as ending soon
+        if(listing.active == 1 && Time.now > listing.fire_time + 40.seconds)
+            # set listing as ending soon
+            listing.update(
+                :active => 2,
+                :fire_time => Time.now
+            )
         # check if 20 seconds has passed since update
-        elsif(listing.active == 2 && listing.fire_time < 20.seconds.ago)
-            listing.update(active: 0, fire_time: Time.now) # set listing as ended
-        # relist in 5 seconds
-        elsif(listing.active == 0 && listing.fire_time < 5.seconds.ago)
-            listing.update(active: 1, fire_time: Time.now)
+        elsif(listing.active == 2 && Time.now > listing.fire_time + 20.seconds)
+            # set listing as ended
+            listing.update(
+                :active => 0,
+                :fire_time => Time.now
+            )
+        # check if 5 seconds has passed since ended && listing should relist
+        elsif(listing.active == 0 && listing.relist == 1 && Time.now > listing.fire_time + 5.seconds)
+            # relist
+            listing.update(
+                :active => 1,
+                :fire_time => Time.now,
+                :sold => 0
+            )
         end
     end
 end

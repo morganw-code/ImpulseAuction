@@ -70,3 +70,5 @@ gem "faker", "~> 2.11"
 gem "rufus-scheduler", "~> 3.6"
 
 gem "redis", "~> 4.1"
+
+gem "money", "~> 6.13"

@@ -7,6 +7,9 @@ for i in 1000.times do
         :description => "lorem ipsum",
         :active => active,
         # trick the scheduler task
-        :fire_time => Time.now + rand(121)
+        :fire_time => Time.now + rand(1000).seconds,
+        :sold => 0,
+        :relist => 1,
+        :starting_price => rand(500)
     )
 end

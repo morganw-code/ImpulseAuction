@@ -28,6 +28,10 @@ body {
     background-color: map-get($colors, black-ish);
 }
 
+.listing-holder {
+    color: white;
+}
+
 .container-fluid {
     scroll-behavior: smooth;
 
@@ -40,7 +44,6 @@ body {
     }
 
     .row {
-        border: 1px solid $red;
         overflow-x: auto;
         white-space: nowrap;
         color: white;
