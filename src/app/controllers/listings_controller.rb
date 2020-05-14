@@ -16,6 +16,21 @@ class ListingsController < ApplicationController
         end
     end
 
+    def show
+        @listing = Listing.find_by_id(params[:id])
+    end
+
+    def destroy
+        @listing = Listing.find_by_id(params[:id])
+        @listing.destroy()
+
+        if @listing.errors.any?
+            render plain: "error"
+        else
+            redirect_to :root
+        end
+    end
+
     private
 
     def listing_params

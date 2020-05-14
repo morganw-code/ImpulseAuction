@@ -29,6 +29,12 @@ body {
     color: #FFF;
 }
 
+.alert, .notice {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
 .form-container {
     width: 100%;
     max-width: 330px;
@@ -81,5 +87,14 @@ body {
                 background-color: map-get($dark, b);
             }
         }
+    }
+}
+
+// admin dash
+
+.users-table {
+    border: 1px solid red;
+    th, td {
+        padding: 1em;
     }
 }

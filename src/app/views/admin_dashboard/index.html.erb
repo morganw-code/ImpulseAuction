@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div class="content">
+                <h1>Admin Dashboard</h1>
+                <div class="content-container">
+                    <h2>Users - <%= User.count() %></h2>
+                    <table class="users-table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                        <% for user in @users %>
+                            <tr>
+                                <td><%= user.id %></td>
+                                <td><%= user.email %></td>
+                                <td><%= button_to "delete", admin_dashboard_destroy_user_path(user.id), :method => :delete %></td>
+                            </tr>
+                        <% end %>
+                    </table>
+                    <br>
+                    <h2>Listings - <%= Listing.count() %></h2>
+                    <table class="users-table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>User ID</th>
+                            <th>Action</th>
+                        </tr>
+                        <% for listing in @listings %>
+                            <tr>
+                                <td><%= listing.id %></td>
+                                <td><%= listing.title %></td>
+                                <td><%= listing.user_id %></td>
+                                <td><%= button_to "delete", destroy_listing_path(listing.id), :method => :delete %></td>
+                            </tr>
+                        <% end %>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>

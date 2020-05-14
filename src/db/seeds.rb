@@ -9,14 +9,14 @@ user.save!
 
 id = User.find_by_email("admin@admin.com").id
 
-for i in 500.times do
-    active = [1, 2].sample
+for i in 100.times do
+    active = [1, 2, 0].sample
     Listing.create(
         :title => Faker::Commerce.product_name,
         :description => "lorem ipsum",
         :active => active,
         # trick the scheduler task
-        :fire_time => Time.now + rand(1000).seconds,
+        :fire_time => Time.now,
         :sold => 0,
         :relist => 1,
         :starting_price => rand(500),
