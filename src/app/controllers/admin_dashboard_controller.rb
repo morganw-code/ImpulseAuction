@@ -1,9 +1,6 @@
 class AdminDashboardController < ApplicationController
     before_action :authenticate_user!
-
-    before_action do 
-        redirect_to :root unless current_user && current_user.admin
-    end
+    before_action { redirect_to root unless current_user && current_user.admin }
 
     def index
         @listings = Listing.all()
@@ -13,12 +10,12 @@ class AdminDashboardController < ApplicationController
     # for user specifically
     def destroy
         @user = User.find_by_id(params[:id])
-        if(!@user.id == current_user.id)
+        if(@user.id != current_user.id)
             @user.destroy()
             if @user.errors.any?
                 render :plain => "error!"
             else
-                redirect_to :admin_dashboard
+                redirect_to admin_dashboard
             end
 
         else

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/", :to => "listings#index", :as => "root"
   get "/listing/:id", :to => "listings#show", :as => "listing"
   delete "/listing/:id", :to => "listings#destroy", :as=> "destroy_listing"
+  post "/listings/new", :to => "listings#create", :as => "new_listing"
   # mount ActionCable.server => "cable"
 
   # admin dashboard

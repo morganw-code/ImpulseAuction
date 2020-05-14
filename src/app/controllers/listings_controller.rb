@@ -27,7 +27,20 @@ class ListingsController < ApplicationController
         if @listing.errors.any?
             render plain: "error"
         else
-            redirect_to :root
+            redirect_to root
+        end
+    end
+
+    def new
+        @listing = Listing.new()
+    end
+
+    def create
+        @listing = current_user.listings.create(listing_params)
+        if @listing.errors.any?
+            render "new"
+        else
+            redirect_to listings_path
         end
     end
 

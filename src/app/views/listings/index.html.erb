@@ -1,6 +1,5 @@
 <div class="container-fluid">
     <div class="listing-holder" id="refresh-ended">
-        <h1><%= User.first.admin == true %></h1>
         <h1>Sold</h1>
         <div class="row row-min-small text-center flex-nowrap" id="ended-container">
             <% for listing in @listings %>
@@ -20,7 +19,7 @@
     <div class="search" style="color: #FFF; display: flex; align-items: center; justify-content: space-between">
     <div>
         <span>Categories</span>
-        <%= form_with model: @listing, local: true, html: { autocomplete: "off" } do |form| %>
+        <%= form_with model: @listing, local: true do |form| %>
             <%= form.select :categories, ['option1', 'option2'] %>
         <% end %>
     </div>
@@ -44,6 +43,7 @@
                         <br>
                         <%= (Time.now - listing.updated_at).to_i %>s
                         <br>
+                        <%= button_to "Bid", "#", :method => :patch %>
                         <%= button_to "View", listing_path(listing.id), :method => :get %>
                     </div>
                 <% end %>
@@ -63,6 +63,7 @@
                         <br>
                         <%= (Time.now - listing.updated_at).to_i %>s
                         <br>
+                        <%= button_to "Bid", "#", :method => :patch %>
                         <%= button_to "View", listing_path(listing.id), :method => :get %>
                     </div>
                 <% end %>
