@@ -6,6 +6,7 @@ user.email = "admin@admin.com"
 user.password = "admin123"
 user.encrypted_password = "$2a$11$CGmdaAQM/m5DA9MwKJN5/eu1f9zzmVS1kb4WgP/6.ZOh.gGswWXIS"
 user.save!
+User.first.update(admin: true)
 
 id = User.find_by_email("admin@admin.com").id
 

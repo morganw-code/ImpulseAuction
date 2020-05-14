@@ -1,5 +1,6 @@
 <div class="container-fluid">
     <div class="listing-holder" id="refresh-ended">
+        <h1><%= User.first.admin == true %></h1>
         <h1>Sold</h1>
         <div class="row row-min-small text-center flex-nowrap" id="ended-container">
             <% for listing in @listings %>

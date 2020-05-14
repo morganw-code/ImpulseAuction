@@ -1,6 +1,10 @@
 class AdminDashboardController < ApplicationController
     before_action :authenticate_user!
-    
+
+    before_action do 
+        redirect_to :root unless current_user && current_user.admin
+    end
+
     def index
         @listings = Listing.all()
         @users = User.all()
