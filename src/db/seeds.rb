@@ -10,8 +10,8 @@ User.first.update(admin: true)
 
 id = User.find_by_email("admin@admin.com").id
 
-for i in 100.times do
-    active = [1, 2, 0].sample
+for i in 1.times do
+    active = [2].sample
     Listing.create(
         :title => Faker::Commerce.product_name,
         :description => "lorem ipsum",

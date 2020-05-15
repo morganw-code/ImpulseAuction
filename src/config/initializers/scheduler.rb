@@ -12,19 +12,31 @@ scheduler.every '1s' do
                 :active => 2,
                 :fire_time => Time.now
             )
-        # check if 20 seconds has passed since update
-        elsif(listing.active == 2 && Time.now > listing.fire_time + 20.seconds)
+        # check if 20 seconds has passed since update and should sell the listing to a user
+        elsif(listing.active == 2 && Time.now > listing.fire_time + 20.seconds && !listing.sold && listing.bids.count() > 0)
+            # select the highest bid for the listing
+            @bid = listing.bids.order(amount: :desc).first
+            # todo create order
+            # set listing as ended & sold
+            listing.update(
+                :active => 0,
+                :fire_time => Time.now,
+                :sold => 1,
+                :relist => 0
+            )
+        # check if 20 seconds has passed since update && !sold
+        elsif(listing.active == 2 && Time.now > listing.fire_time + 20.seconds && !listing.sold)
             # set listing as ended
             listing.update(
                 :active => 0,
-                :fire_time => Time.now
+                :fire_time => Time.now,
+                :sold => 0
             )
-        # check if 5 seconds has passed since ended && listing should relist
-        elsif(listing.active == 0 && listing.relist == 1 && Time.now > listing.fire_time + 5.seconds)
+        # check if 5 seconds has passed since ended && listing should relist if not sold
+        elsif(listing.active == 0 && listing.relist && !listing.sold && Time.now > listing.fire_time + 5.seconds)
             # relist
             listing.update(
                 :active => 1,
-                :sold => 0,
                 :fire_time => Time.now
             )
         end

@@ -4,13 +4,13 @@
         <div class="row row-min-small text-center flex-nowrap" id="ended-container">
             <% for listing in @listings %>
                 <! –– listings that have sold will have an active id of 0 ––>
-                <% if(listing.active == 0) %>
+                <% if(listing.active == 0 && listing.sold) %>
                     <div class="col-sm-4 card-sold">
                         <%= listing.title %>
                         <br>
                         $ <%= Money.new(listing.starting_price, 'AUD') %>
                         <br>
-                        <%= (Time.now - listing.updated_at).to_i %>s
+                        <%= (Time.now - listing.fire_time).to_i %>s
                     </div>
                 <% end %>
             <% end %>
@@ -41,9 +41,9 @@
                         <br>
                         $ <%= Money.new(listing.starting_price, 'AUD') %>
                         <br>
-                        <%= (Time.now - listing.updated_at).to_i %>s
+                        <%= (Time.now - listing.fire_time).to_i %>s
                         <br>
-                        <%= button_to "Bid", "#", :method => :patch %>
+                        <%= button_to "Bid", bid_listing_path(listing.id), :method => :patch %>
                         <%= button_to "View", listing_path(listing.id), :method => :get %>
                     </div>
                 <% end %>
@@ -61,9 +61,9 @@
                         <br>
                         $ <%= Money.new(listing.starting_price, 'AUD') %>
                         <br>
-                        <%= (Time.now - listing.updated_at).to_i %>s
+                        <%= (Time.now - listing.fire_time).to_i %>s
                         <br>
-                        <%= button_to "Bid", "#", :method => :patch %>
+                        <%= button_to "Bid", bid_listing_path(listing.id), :method => :patch %>
                         <%= button_to "View", listing_path(listing.id), :method => :get %>
                     </div>
                 <% end %>

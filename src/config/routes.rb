@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   # admin dashboard
   get "/admin", :to => "admin_dashboard#index", :as => "admin_dashboard"
   delete "/admin/:id", :to => "admin_dashboard#destroy", :as => "admin_dashboard_destroy_user"
+
+  patch "/:id", :to => "bids#bid", :as => "bid_listing"
 end

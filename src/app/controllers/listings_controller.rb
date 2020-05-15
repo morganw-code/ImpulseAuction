@@ -27,7 +27,7 @@ class ListingsController < ApplicationController
         if @listing.errors.any?
             render plain: "error"
         else
-            redirect_to root
+            redirect_to :root
         end
     end
 
@@ -40,7 +40,16 @@ class ListingsController < ApplicationController
         if @listing.errors.any?
             render "new"
         else
-            redirect_to listings_path
+            redirect_to :listings
+        end
+    end
+
+    def bid
+        @listing = Listing.find_by_id(params[:id])
+        if((@listing.active == 1 || @listing.active == 2))
+            @listing.update(:starting_price => @listing.starting_price + 100) # $1
+        else
+            render plain: "Listing is no longer available / or you tried to bid twice"
         end
     end
 
