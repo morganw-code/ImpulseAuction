@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post "/listings/new", :to => "listings#create", :as => "new_listing"
   # mount ActionCable.server => "cable"
 
+  get "/user/:id", :to => "users#show", :as => :user
+
   # admin dashboard
   get "/admin", :to => "admin_dashboard#index", :as => "admin_dashboard"
   delete "/admin/:id", :to => "admin_dashboard#destroy", :as => "admin_dashboard_destroy_user"
