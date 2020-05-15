@@ -7,12 +7,17 @@ class BidsController < ApplicationController
             update_listing(@listing)
         # check if listing is active and if the user does have an existing bid on the listing
         elsif(listing_is_active?(@listing) && user_has_existing_bid?)
-            @listing.bids.find_by_user_id(current_user).destroy()
-            @listing.bids.create(
-                :user => current_user,
-                :amount => bid_amount(@listing)
-            )
-            update_listing(@listing)
+            # check if the users existing bid is lower than the current price of the listing
+            if(@listing.bids.find_by_user_id(current_user).amount < @listing.starting_price)
+                @listing.bids.find_by_user_id(current_user).destroy()
+                @listing.bids.create(
+                    :user => current_user,
+                    :amount => bid_amount(@listing)
+                )
+                update_listing(@listing)
+            else
+                render plain: "You are the highest bidder!"
+            end
         else
             render plain: "Listing is no longer available, sorry!"
         end

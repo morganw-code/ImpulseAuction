@@ -44,15 +44,6 @@ class ListingsController < ApplicationController
         end
     end
 
-    def bid
-        @listing = Listing.find_by_id(params[:id])
-        if((@listing.active == 1 || @listing.active == 2))
-            @listing.update(:starting_price => @listing.starting_price + 100) # $1
-        else
-            render plain: "Listing is no longer available / or you tried to bid twice"
-        end
-    end
-
     private
 
     def listing_params
