@@ -1,0 +1,31 @@
+<% if listing.errors.any? %>
+    <div class="errors">
+        <% listing.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+        <% end %>
+    </div>
+<% end %>
+
+<%= form_with :model => listing, :local => true do |form| %>
+    <div>
+        <%= form.label "title" %>
+        <%= form.text_field :title, :value => listing.title %>
+    </div>
+    <div>
+        <%= form.label "description" %>
+        <%= form.text_area :description, :value => listing.description %>
+    </div>
+    <div>
+        <%= form.label "starting price" %>
+        <%= form.number_field :starting_price, :min => 0, :value => listing.starting_price %>
+    </div>
+
+    <div>
+        <%= form.label :image %>
+        <%= form.file_field :image, :accept => "image/png,image/gif,image/jpeg,image/jpg", :value => listing.image %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

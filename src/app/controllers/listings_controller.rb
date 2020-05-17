@@ -37,10 +37,15 @@ class ListingsController < ApplicationController
 
     def create
         @listing = current_user.listings.create(listing_params)
+        @listing.update(
+            :active => 1,
+            :relist => true,
+            :fire_time => Time.now
+        )
         if @listing.errors.any?
             render "new"
         else
-            redirect_to :listings
+            redirect_to :root
         end
     end
 

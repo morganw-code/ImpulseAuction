@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   get "/", :to => "listings#index", :as => "root"
+
+  post "/listings", to: "listings#create"
+  get "/listing/new", :to => "listings#new", :as => "new_listing"
   get "/listing/:id", :to => "listings#show", :as => "listing"
   delete "/listing/:id", :to => "listings#destroy", :as=> "destroy_listing"
-  post "/listings/new", :to => "listings#create", :as => "new_listing"
   # mount ActionCable.server => "cable"
 
   get "/user/:id", :to => "users#show", :as => :user
