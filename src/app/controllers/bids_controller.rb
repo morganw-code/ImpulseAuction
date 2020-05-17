@@ -26,7 +26,9 @@ class BidsController < ApplicationController
     private
 
     def update_listing(listing)
-        listing.update(:starting_price => @listing.bids.find_by_user_id(current_user).amount)
+        listing.update(
+            :starting_price => @listing.bids.find_by_user_id(current_user).amount
+        )
     end
 
     def bid_amount(listing)

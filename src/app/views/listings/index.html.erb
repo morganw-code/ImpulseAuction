@@ -8,21 +8,19 @@
                     <div class="col-sm-4 card-sold">
                         <%= listing.title %>
                         <br>
-                        $ <%= Money.new(listing.starting_price, 'AUD') %>
-                        <br>
-                        <%= (Time.now - listing.fire_time).to_i %>s
+                        Sold $<%= Money.new(listing.starting_price, 'AUD') %>
                     </div>
                 <% end %>
             <% end %>
         </div>
     </div>
     <div class="search" style="color: #FFF; display: flex; align-items: center; justify-content: space-between">
-    <div>
-        <span>Categories</span>
-        <%= form_with model: @listing, local: true do |form| %>
-            <%= form.select :categories, ['option1', 'option2'] %>
-        <% end %>
-    </div>
+        <div>
+            <span>Categories</span>
+            <%= form_with model: @listing, local: true do |form| %>
+                <%= form.select :categories, ['option1', 'option2'] %>
+            <% end %>
+        </div>
         <div>
             <%= form_with model: @listing, local: true, html: { autocomplete: "off" } do |form| %>
                 <%= form.text_field :search, placeholder: "type your search query", class: "text-field-box" %>
@@ -31,15 +29,14 @@
         </div>
     </div>
     <div class="listing-holder" id="refresh-ending">
-        <h1>Ending</h1>
+        <h1>Your Live Bids</h1>
         <div class="row row-min-normal text-center flex-nowrap" id="ending-container">
             <% for listing in @listings %>
-                <! –– listings that are ending soon will have an active id of 2 ––>
-                <% if(listing.active == 2) %>
+                <% if(listing.bids.find_by_user_id(current_user) && (listing.active == 1 || listing.active == 2)) %>
                     <div class="col-sm-4 card-ending">
                         <%= listing.title %>
                         <br>
-                        $ <%= Money.new(listing.starting_price, 'AUD') %>
+                        $<%= Money.new(listing.starting_price, 'AUD') %>
                         <br>
                         <%= (Time.now - listing.fire_time).to_i %>s
                         <br>
@@ -54,12 +51,12 @@
         <h1>Active</h1>
         <div class="row row-min-normal", id="new-listings" id="active-container">
             <% for listing in @listings %>
-                <! –– listings that are active will have an active id of 1 ––>
-                <% if(listing.active == 1) %>
+                <! –– listings that are active will have an active id of 1 or 2 ––>
+                <% if(listing.active == 1 || listing.active == 2 && !listing.bids.find_by_user_id(current_user)) %>
                     <div class="col-sm-4 card-active">
                         <%= listing.title %>
                         <br>
-                        $ <%= Money.new(listing.starting_price, 'AUD') %>
+                        $<%= Money.new(listing.starting_price, 'AUD') %>
                         <br>
                         <%= (Time.now - listing.fire_time).to_i %>s
                         <br>
