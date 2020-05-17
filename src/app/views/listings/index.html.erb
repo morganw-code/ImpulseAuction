@@ -62,6 +62,8 @@
                         <br>
                         <%= button_to "Bid", bid_listing_path(listing.id), :method => :patch %>
                         <%= button_to "View", listing_path(listing.id), :method => :get %>
+                        <br>
+                        <%= image_tag listing.image if listing.image.attached? %>
                     </div>
                 <% end %>
             <% end %>
