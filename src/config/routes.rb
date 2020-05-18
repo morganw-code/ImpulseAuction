@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/", :to => "listings#index", :as => "root"
 
   post "/listings", to: "listings#create"
+  post "/listing/:id", :to => "listings#add_favourite", :as => "listing_favourite"
   get "/listing/new", :to => "listings#new", :as => "new_listing"
   get "/listing/:id", :to => "listings#show", :as => "listing"
   delete "/listing/:id", :to => "listings#destroy", :as=> "destroy_listing"

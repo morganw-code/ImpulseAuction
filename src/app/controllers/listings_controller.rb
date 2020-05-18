@@ -49,6 +49,18 @@ class ListingsController < ApplicationController
         end
     end
 
+    def add_favourite
+        @listing = Listing.find_by_id(params[:id])
+        # check if user already has a favourite on the listing
+        if(!@listing.favourites.find_by_user_id(current_user))
+            @listing.favourites.create(:user => current_user)
+            redirect_to :root, :notice => "Favourite created!"
+        else
+            @listing.favourites.find_by_user_id(current_user).destroy()
+            redirect_to :root, :notice => "Favourite removed!"
+        end
+    end
+
     private
 
     def listing_params

@@ -42,6 +42,10 @@
                         <br>
                         <%= button_to "Bid", bid_listing_path(listing.id), :method => :patch %>
                         <%= button_to "View", listing_path(listing.id), :method => :get %>
+                        <% if listing.bids.any? %>
+                            <br>
+                            Highest bidder: <%= listing.bids.order(amount: :desc).first.user_id %>
+                        <% end %>
                     </div>
                 <% end %>
             <% end %>
@@ -62,8 +66,13 @@
                         <br>
                         <%= button_to "Bid", bid_listing_path(listing.id), :method => :patch %>
                         <%= button_to "View", listing_path(listing.id), :method => :get %>
+                        <%= button_to "Favourite", listing_favourite_path(listing.id), :method => :post %>
                         <br>
                         <%= image_tag listing.image if listing.image.attached? %>
+                        <% if listing.bids.any? %>
+                            <br>
+                            Highest bidder: <%= listing.bids.order(amount: :desc).first.user_id %>
+                        <% end %>
                     </div>
                 <% end %>
             <% end %>

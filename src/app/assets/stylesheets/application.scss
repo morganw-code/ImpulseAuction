@@ -62,6 +62,13 @@ body {
         white-space: nowrap;
         color: white;
 
+        .card-active {
+            img {
+                max-width: 256px;
+                max-height: 256px;
+            }
+        }
+
         .card-sold {
             height: 128px;
             max-width: 128px;
