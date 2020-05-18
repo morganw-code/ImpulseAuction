@@ -19,8 +19,11 @@ Every second a task is executed, this task is responsible for checking the datab
 ###### Automatic Reloading
 
 Similar to the scheduled task, a JavaScript function gets called every second to reload each of the containers that contain listings in three different states:
+
         0 - Ended
+
         1 - Active
+
         2 - Ending
 
 If a listing is in it's active or ending state, it is displayed at the bottom of the screen. If a listing has a bid that belongs to a user that is currently signed in, the listing will also display in the "Live Bids" section for that user. And finally, if a listing has been sold to a user and has ended, the listing will appear at the top of the page under the "Sold" section.
@@ -52,22 +55,31 @@ ImpulseAuction provides a quick and easy solution to buying online where you onl
 ##### 4. Describe your project’s models in terms of the relationships (active record associations) they have with each other.
 
 A user has_many listings, and a listing belongs_to a user
+
 A user has_hany bids, and a bid belongs_to a user and a listing
+
 A user has_one_attached image
+
 A user has_many favourites, and a favourite belongs to a user and a listing
+
 A user has_many orders, and an order belongs to a user and a listing
 
 A order belongs_to a listing and a user
 
 A favourite belongs_to a user and a listing
+
 A favourite validates_uniqueness_of a user
 
 A bid belongs_to a user and a listing
 
 A listing belongs_to a user
+
 A listing has_many_attached images
+
 A listing has_many bids
+
 A listing has_many favourites
+
 A listing has_many orders
 
 ##### 5. Discuss the database relations to be implemented.
