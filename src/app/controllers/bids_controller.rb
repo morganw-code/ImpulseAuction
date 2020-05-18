@@ -29,10 +29,10 @@ class BidsController < ApplicationController
                 )
                 update_listing()
             else
-                render plain: "You are the highest bidder!"
+                redirect_to :root, :notice => "You are the highest bidder!"
             end
         else
-            render plain: "Listing is no longer available, sorry!"
+            redirect_to :root, :notice => "Listing is no longer available, sorry!"
         end
     end
 
