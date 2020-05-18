@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div class="content">
+                <h1>Your Orders: <%= current_user.orders.count %></h1>
+                <div class="content-container">
+                    <% if !current_user.orders.any? %>
+                        <p>No orders have been made</p>
+                    <% end %>
+                    <% for order in @orders %>
+                        <div class="order">
+                            <%= Listing.find_by_id(order.listing_id).title %>
+                            <br>
+                            Status: <%= order.paid ? "Paid" : "Waiting for payment" %>
+                            <% if !order.paid %>
+                                <%= button_to "Make Payment", "" %>
+                            <% end %>
+                        </div>
+                        <br>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>

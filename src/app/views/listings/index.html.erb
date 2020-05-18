@@ -58,21 +58,29 @@
                 <! –– listings that are active will have an active id of 1 or 2 ––>
                 <% if(listing.active == 1 || listing.active == 2 && !listing.bids.find_by_user_id(current_user)) %>
                     <div class="col-sm-4 card-active">
-                        <%= listing.title %>
-                        <br>
-                        $<%= Money.new(listing.starting_price, 'AUD') %>
-                        <br>
-                        <%= (Time.now - listing.fire_time).to_i %>s
-                        <br>
-                        <%= button_to "Bid", bid_listing_path(listing.id), :method => :patch %>
-                        <%= button_to "View", listing_path(listing.id), :method => :get %>
-                        <%= button_to "Favourite", listing_favourite_path(listing.id), :method => :post %>
-                        <br>
-                        <%= image_tag listing.image if listing.image.attached? %>
-                        <% if listing.bids.any? %>
-                            <br>
-                            Highest bidder: <%= listing.bids.order(amount: :desc).first.user_id %>
-                        <% end %>
+                        <div class="card-item">
+                            <h2><%= listing.title %></h2>
+                        </div>
+                        <div class="card-item">
+                            <p><%= listing.description %></p>
+                        </div>
+                        <div class="card-item">
+                            <%= (Time.now - listing.fire_time).to_i %>s
+                        </div>
+                        <div class="card-item">
+                            <%= image_tag listing.image if listing.image.attached? %>
+                            <% if listing.bids.any? %>
+                                Highest bidder: <%= listing.bids.order(amount: :desc).first.user_id %>
+                            <% end %>
+                        </div>
+                        <div class="card-item">
+                            $<%= Money.new(listing.starting_price, 'AUD') %>
+                        </div>
+                        <div class="card-item buttons">
+                            <%= button_to "Bid", bid_listing_path(listing.id), :method => :patch %>
+                            <%= button_to "View", listing_path(listing.id), :method => :get %>
+                            <%= button_to "Favourite", listing_favourite_path(listing.id), :method => :post %>
+                        </div>
                     </div>
                 <% end %>
             <% end %>

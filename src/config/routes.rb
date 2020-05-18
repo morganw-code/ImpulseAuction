@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   delete "/admin/:id", :to => "admin_dashboard#destroy", :as => "admin_dashboard_destroy_user"
 
   patch "/:id", :to => "bids#bid", :as => "bid_listing"
+
+  get "/orders", :to => "orders#index", :as => "orders"
 end

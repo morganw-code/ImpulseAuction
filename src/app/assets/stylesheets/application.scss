@@ -10,9 +10,9 @@
 
 @media (min-width: 1200px) { }
 
-@mixin flex-center($direction) {
+@mixin flex-between($direction) {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: $direction;
 }
@@ -63,9 +63,14 @@ body {
         color: white;
 
         .card-active {
+            padding: 1em;
+            min-height: 400px;
             img {
                 max-width: 256px;
-                max-height: 256px;
+            }
+
+            .buttons {
+                @include flex-between(row);
             }
         }
 
