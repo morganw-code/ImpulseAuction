@@ -23,16 +23,11 @@
 
 // couldn't figure out how to run jquery outside of application.js
 
-var lastPosEnded;
-
 $( document ).ready(function() {
     function update() {
-        var lastScroll = $("#ending-container").scrollLeft;
         $("#refresh-ended").load(document.URL + " #refresh-ended");
         $("#refresh-ending").load(document.URL + " #refresh-ending");
         $("#refresh-active").load(document.URL + " #refresh-active");
-
-        $("#ending-container").scrollLeft = lastScroll;
     }
 
     setInterval(update, 1000);

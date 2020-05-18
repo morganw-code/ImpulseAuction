@@ -1,127 +1,104 @@
-# My 2 way market place template
-
-Link to the deployed app: www.myapp.com 
-Link to github repo: www.github.myrepo.com
-
-## Section 1: Requirement checklist 
-
-Each time you have completed a requirement check it off the list. This way it will be easy for the educators as well as yourselves to track your progress.
-
-
-- [ ] 1. Create your app using Ruby on Rails.
-- [ ] 2. Use Postgresql database in development and production.
-- [ ] 3. My app has authentication (eg. Devise).
-- [ ] 4. My app has authorisation (i.e. users have restrictions on what they can see and edit).
-- [ ] 5. My app has some type of file (eg. images) uploading capability.
-- [ ] 6. My app is deployed to Heroku (recommended) or AWS.
-- [ ] 7. I have identified the problem I am trying to solve by building this particular marketplace app.
-- [ ] 8. I have explained why is it a problem that needs solving.
-- [ ] 9. I have provided a link (URL) to my deployed app (i.e. website)
-- [ ] 10. I have provided a link to my GitHub repository (repo). I have ensured the repo is accessible by my Educators.
-- [ ] 11. I have a complete description of my marketplace app (website), including:  
-        - 11.1 Purpose  
-        - 11.2 Functionality / features  
-        - 11.3 Sitemap  
-        - 11.4 Screenshots  
-        - 11.5 Target audience  
-        - 11.6 Tech stack (e.g. html, css, deployment platform, etc)  
-
-- [ ] 12. I have provided user stories for my app
-- [ ] 13. I have provided Wire-Frames for my app 
-- [ ] 14. I have provided an ERD for my app
-- [ ] 15. I have explained the different high-level components (abstractions) in my app
-- [ ] 16. I have listed and described any third party services that your app will use
-- [ ] 17. I have described my projects models in terms of the relationships (active record associations) they have with each other.
-- [ ] 18. I have discussed the database relations to be implemented in my application
-- [ ] 19. I have provided my database schema design
-- [ ] 20. I have described the way tasks are allocated and tracked in my project
-
-NB Slide/Presentation specific requirements
-
-- [ ] 21. An outline of the problem I solved by building this particular marketplace app, and why it’s a problem that needs solving.
-- [ ] 22. A well planned walkthrough of my app
-- [ ] 23. I have practived my presentation at least once and it is 5-6 minutes long. 
-
-
-### Rubric Criteria
-
-## Section 2: Documentation 
-NB leave the Titles as they are and answer the questions below.
+# Morgan Webb - T2A2
 
 ##### 1. Explain the different high-level components (abstractions) in your App.
-* Includes a complete and detailed description of third party services used in the app
+
+ImpulseAuction is a two-sided 60-second aution marketplace built using Ruby on Rails.
+
+###### User Authentication
+
+When a user visits the site, before they can view anything, they must create an account or authenticate themselves with an existing account, granting them access to anything a user may do within the application. The devise gem is used to authenticate these users, and their sessions. Only registered users are allowed to create a listing, view listings, and place a bid on a listing. The administration dashboard is only accessible by administrators.
+
+###### Listing Creation
+
+Users can create a listing specifying a title, description, a starting price (which will scale with bids), a product image and if the listing should relist or not if the listing failed to sell.
+
+###### Scheduler Task
+
+Every second a task is executed, this task is responsible for checking the database for any updates at any given time and throughout various conditional statements, each listing is updated, and orders are created accordingly. This task resides in `config/initializers/scheduler.rb`. When certain actions are made, they affect the state of the listing. If a listing is set to relist and the listing has not sold, the listing will relist with a new life-time of 60-seconds. This process is repeated until a listing has been sold or cancelled by the user.
+
+###### Automatic Reloading
+
+Similar to the scheduled task, a JavaScript function gets called every second to reload each of the containers that contain listings in three different states:
+        0 - Ended
+        1 - Active
+        2 - Ending
+
+If a listing is in it's active or ending state, it is displayed at the bottom of the screen. If a listing has a bid that belongs to a user that is currently signed in, the listing will also display in the "Live Bids" section for that user. And finally, if a listing has been sold to a user and has ended, the listing will appear at the top of the page under the "Sold" section.
 
 ##### 2. List and describe any 3rd party services.
-* Precisely explains and shows understanding of the different high-level components of the app
+
+These are the following 3rd party services ImpulseAuction uses to function.
+
+###### Amazon S3
+
+Amazon S3 is used to store profile and listing images. ImpulseAuction utilises Amazon S3 as a cloud-based storage solution.
+
+###### Devise
+
+The Devise authentication gem is used to authenticate users and grant them access to areas of the website or certain actions like creating a listing, placing bids, etc. Users can create an account providing their necessary credentials.
+
+###### Bootstrap
+
+Twitter's bootstrap front-end CSS framework is used to style various pages.
+
+###### Faker
+
+Faker is used when seeding the database with data for during development. It is responsible for creating fake data like listing titles, descriptions, etc.
 
 ##### 3.1. Identify the problem you’re trying to solve by building this particular marketplace App?
-* Demonstrates a full understanding of the problems that exist in a relevant marketplace that needs disrupting
 
-
-##### 3.2 Why is the problem identified a problem that needs solving?
-* Demonstrates a full understanding of the problems that exist in a relevant marketplace that needs disrupting
+ImpulseAuction provides a quick and easy solution to buying online where you only have to wait 60 seconds for the outcome of a certain aution! Users do not need to worry about making a payment during the last 60 seconds, once they have won the auction, they may make a payment when it suits them. ImpulseAuction puts the buyer in control, where they are always guaranteed to pay the price that the auction ended with.
 
 ##### 4. Describe your project’s models in terms of the relationships (active record associations) they have with each other.
-* Complete discussion of the project’s models with an understanding of how its active record associations function
+
+A user has_many listings, and a listing belongs_to a user
+A user has_hany bids, and a bid belongs_to a user and a listing
+A user has_one_attached image
+A user has_many favourites, and a favourite belongs to a user and a listing
+A user has_many orders, and an order belongs to a user and a listing
+
+A order belongs_to a listing and a user
+
+A favourite belongs_to a user and a listing
+A favourite validates_uniqueness_of a user
+
+A bid belongs_to a user and a listing
+
+A listing belongs_to a user
+A listing has_many_attached images
+A listing has_many bids
+A listing has_many favourites
+A listing has_many orders
 
 ##### 5. Discuss the database relations to be implemented.
-![This is an image of your ERD](This is the relative path to it)
-* Provides coherent discussion of the database relations, with reference to the ERD
 
+ImpulseAuction has the following relations implemented
+
+###### User
+The User table has many relations, each user has zero or many listings, zero or many favourites, and a relation to active_storage_attachments
+
+###### Listing
+
+A listing belongs to a user, and the user_id foreign key is stored upon listing creation. 
+
+###### Favourite
+
+The favourites table is a join table that contains a two foreign keys, a user_id, and a listing_id. These id's are used to keep track of what listing the user favourited and which user favourited that specific listing.
+
+###### Order
+
+Similar to favourites, an order contains two foreign keys to track which listing the order was for and what user placed said order.
 
 ##### 6. Provide your database schema design.
-* Flawless, complex, complete, and well thought through ERDs provided
 
-##### 7. Provide User stories for your App.
-![This is an image of your user stories](This is the relative path to it)
-* You also just use normal markdown to describe them
-* User stories are well thought out, relevant, and comprehensively cover the needs of the app
+###### Users
 
-##### 8. Provide Wireframes for your App.
-![This is an image of your wire frames](This is the relative path to it)  
-![This is an image of your wire frames](This is the relative path to it)  
-![This is an image of your wire frames](This is the relative path to it)  
-![This is an image of your wire frames](This is the relative path to it)  
-![This is an image of your wire frames](This is the relative path to it)  
-* More than five detailed and well designed wireframes provided, for several different screen sizes (as required for the app)
-
-##### 9. Describe the way tasks are planned and tracked in your project.
-![This is an image of your task planning](This is the relative path to it)
-![This is an image of your task planning](This is the relative path to it)
-![This is an image of your task planning](This is the relative path to it)
-![This is an image of your task planning](This is the relative path to it)
-* Shows significant planning for how tasks are planned and tracked, including a full description of the process and of the tools used
-
-##### 10. ERD provided represents a normalised database model.
-![This is an image of your ERD](This is the relative path to it)
-* Meets D with no duplication and ideal definition of entities.
-
-## Section 3: Code specific assessment. 
-
-This section can be deleted from the readme. I have only included it here to draw your attention to it. 
-
-##### 11. Model implementation represents a normalised database model.
-* Meets D with no duplication and ideal model implementation.
-
-##### 12. Model implementation represents a normalised database model.
-* Meets D and represents a highly optimised solution.
-
-##### 13. Implemented controllers demonstrate correct use of commands to query the database infrastructure.
-* Meets D and does so elegantly (queries chosen are the most elegant to achieve the result).
-
-##### 14. Queries implemented provide correct data for the given scenario.
-* Meets CR and demonstrates exceptional understanding of database queries.
-
-##### 15. Code comments demonstrate how the queries implemented correctly represent the database structure.
-* Meets D and all comments are exceptionally written.
-
-##### 16. Identify and use appropriate model methods.
-* Identifies and uses appropriate model methods for querying on self and its relationships, extends models scope where appropriate
-
-##### 17. Minimising database calls needed to perform an action.
-* Minimise all database calls and implement eager loading where appropriate
-
-##### 18. Sanitise and validates input to maintain data integrity.
-* Validates and sanitises all input
-
-
+        id: int8
+        email: varchar
+        encrypted_password: varchar
+        reset_password_token: varchar
+        reset_password_sent_at: timestamp
+        remember_created_at: timestamp
+        created_at: timestamp
+        updated_at: timestamp
+        admin: boolean
