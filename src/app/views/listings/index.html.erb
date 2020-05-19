@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     <div class="listing-holder" id="refresh-ended">
         <h1>Sold</h1>
         <div class="row row-min-small text-center flex-nowrap" id="ended-container">
@@ -8,44 +8,37 @@
                     <div class="col-sm-4 card-sold">
                         <%= listing.title %>
                         <br>
+                        <%= image_tag listing.image if listing.image.attached? %>
+                        <br>
                         Sold $<%= Money.new(listing.starting_price, 'AUD') %>
                     </div>
                 <% end %>
             <% end %>
         </div>
     </div>
-    <div class="search" style="color: #FFF; display: flex; align-items: center; justify-content: space-between">
-        <div>
-            <span>Categories</span>
-            <%= form_with model: @listing, local: true do |form| %>
-                <%= form.select :categories, ['option1', 'option2'] %>
-            <% end %>
-        </div>
-        <div>
-            <%= form_with model: @listing, local: true, html: { autocomplete: "off" } do |form| %>
-                <%= form.text_field :search, placeholder: "type your search query", class: "text-field-box" %>
-                <%= form.submit "Search" %>
-            <% end %> 
-        </div>
-    </div>
     <div class="listing-holder" id="refresh-ending">
-        <h1>Your Live Bids</h1>
+        <h1>Live Bids</h1>
         <div class="row row-min-normal text-center flex-nowrap" id="ending-container">
             <% for listing in @listings %>
                 <% if(listing.bids.find_by_user_id(current_user) && (listing.active == 1 || listing.active == 2)) %>
                     <div class="col-sm-4 card-ending">
                         <%= listing.title %>
                         <br>
-                        $<%= Money.new(listing.starting_price, 'AUD') %>
-                        <br>
-                        <%= (Time.now - listing.fire_time).to_i %>s
-                        <br>
-                        <%= button_to "Bid", bid_listing_path(listing.id), :method => :patch %>
-                        <%= button_to "View", listing_path(listing.id), :method => :get %>
+                        <%= image_tag listing.image if listing.image.attached? %>
                         <% if listing.bids.any? %>
                             <br>
                             Highest bidder: <%= listing.bids.order(amount: :desc).first.user_id %>
                         <% end %>
+                        <br>
+                        $<%= Money.new(listing.starting_price, 'AUD') %>
+                        <br>
+                        <%= (Time.now - listing.fire_time).to_i %>s
+                        <br>
+                        <div class="card-item buttons">
+                            <%= button_to "Bid", bid_listing_path(listing.id), :class => "btn btn-primary", :method => :patch %>
+                            <%= button_to "View", listing_path(listing.id), :class => "btn btn-success", :method => :get %>
+                            <%= button_to "Favourite", listing_favourite_path(listing.id), :method => :post %>
+                        </div>
                     </div>
                 <% end %>
             <% end %>
@@ -76,9 +69,10 @@
                         <div class="card-item">
                             $<%= Money.new(listing.starting_price, 'AUD') %>
                         </div>
+                        <%= fa_icon "camera-retro" %>
                         <div class="card-item buttons">
-                            <%= button_to "Bid", bid_listing_path(listing.id), :method => :patch %>
-                            <%= button_to "View", listing_path(listing.id), :method => :get %>
+                            <%= button_to "Bid", bid_listing_path(listing.id), :class => "btn btn-primary", :method => :patch %>
+                            <%= button_to "View", listing_path(listing.id), :class => "btn btn-success", :method => :get %>
                             <%= button_to "Favourite", listing_favourite_path(listing.id), :method => :post %>
                         </div>
                     </div>

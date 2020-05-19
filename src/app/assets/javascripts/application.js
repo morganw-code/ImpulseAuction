@@ -28,6 +28,8 @@ $( document ).ready(function() {
         $("#refresh-ended").load(document.URL + " #refresh-ended");
         $("#refresh-ending").load(document.URL + " #refresh-ending");
         $("#refresh-active").load(document.URL + " #refresh-active");
+
+        $("#refresh-show-listing").load(document.URL + " #refresh-show-listing");
     }
 
     setInterval(update, 1000);

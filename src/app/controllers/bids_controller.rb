@@ -1,4 +1,6 @@
 class BidsController < ApplicationController
+    before_action :authenticate_user!
+    
     before_action :set_listing,
         :only => [
             :bid,

@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <br>
+            <div class="listing-content" id="refresh-show-listing">
+                <% if @listing.active == 2 || @listing.active == 1 %>
+                    <%= @listing.title %>
+                    <br>
+                    <%= image_tag @listing.image if @listing.image.attached? %>
+                    <br>
+                    <%= @listing.description %>
+                    <br>
+                    $<%= Money.new(@listing.starting_price, 'AUD') %>
+                    <div class="card-item buttons">
+                        <%= button_to "Bid", bid_listing_path(@listing.id), :method => :patch %>
+                        <%= button_to "Favourite", listing_favourite_path(@listing.id), :method => :post %>
+                    </div>
+                <% else %>
+                    <p>Listing is no longer available</p>
+                <% end %>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

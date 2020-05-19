@@ -28,6 +28,11 @@
             <%= f.label :image %>
             <%= f.file_field :image, :accept => "image/png,image/gif,image/jpeg,image/jpg", :value => listing.image%><br />
         </div>
+
+        <div class="field">
+            <%= f.label :relist %>
+            <%= f.check_box :relist, :value => listing.relist %><br />
+        </div>
         <br>
         <div class="actions">
             <%= f.submit "Create", class: "btn btn-lg btn-primary btn-block" %>
