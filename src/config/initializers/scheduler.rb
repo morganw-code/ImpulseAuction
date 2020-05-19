@@ -1,7 +1,9 @@
 require 'rufus-scheduler'
 scheduler = Rufus::Scheduler::singleton
 
-scheduler.every '1s' do
+s = Rufus::Scheduler.singleton
+
+s.every '1s' do
     @listings = Listing.all
     #check if listing has been 
     for listing in @listings
