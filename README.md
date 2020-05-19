@@ -179,7 +179,12 @@ TODO
 
 ##### 9. Describe the way tasks are planned and tracked in your project.
 
-Development was planned using trello. TODO
+Development was planned using trello.
+
+![This is an image of my task planning]("./docs/first-trello.png")
+![This is an image of my task planning]("./docs/second-trello.png")
+![This is an image of my task planning]("./docs/third-trello.png")
+![This is an image of my task planning]("./docs/final-trello.png")
 
 ##### 10. ERD provided represents a normalised database model.
 
