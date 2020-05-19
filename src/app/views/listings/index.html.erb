@@ -37,7 +37,7 @@
                         <div class="card-item buttons">
                             <%= button_to "Bid", bid_listing_path(listing.id), :class => "btn btn-primary", :method => :patch %>
                             <%= button_to "View", listing_path(listing.id), :class => "btn btn-success", :method => :get %>
-                            <%= button_to "Favourite", listing_favourite_path(listing.id), :method => :post %>
+                            <%= button_to "Favourite", listing_favourite_path(listing.id), :class => "btn btn-warning", :method => :post %>
                         </div>
                     </div>
                 <% end %>
@@ -69,11 +69,10 @@
                         <div class="card-item">
                             $<%= Money.new(listing.starting_price, 'AUD') %>
                         </div>
-                        <%= fa_icon "camera-retro" %>
                         <div class="card-item buttons">
                             <%= button_to "Bid", bid_listing_path(listing.id), :class => "btn btn-primary", :method => :patch %>
                             <%= button_to "View", listing_path(listing.id), :class => "btn btn-success", :method => :get %>
-                            <%= button_to "Favourite", listing_favourite_path(listing.id), :method => :post %>
+                            <%= button_to "Favourite", listing_favourite_path(listing.id), :class => "btn btn-warning", :method => :post %>
                         </div>
                     </div>
                 <% end %>

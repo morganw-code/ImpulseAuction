@@ -76,3 +76,5 @@ gem "money", "~> 6.13"
 gem "devise", "~> 4.7"
 
 gem "aws-sdk-s3", "~> 1.64"
+
+gem "font-awesome-rails", "~> 4.7"

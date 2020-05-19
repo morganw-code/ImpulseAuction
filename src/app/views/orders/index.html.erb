@@ -13,9 +13,11 @@
                         <div class="order">
                             <%= Listing.find_by_id(order.listing_id).title %>
                             <br>
+                            <%= image_tag Listing.find_by_id(order.listing_id).image if Listing.find_by_id(order.listing_id).image.attached? %>
+                            <br>
                             Status: <%= order.paid ? "Paid" : "Waiting for payment" %>
                             <% if !order.paid %>
-                                <%= button_to "Make Payment", "" %>
+                                <%= button_to "Make Payment", "", :class => "btn btn-success", :method => :get %>
                             <% end %>
                         </div>
                         <br>

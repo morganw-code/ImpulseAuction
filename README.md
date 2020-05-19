@@ -179,16 +179,16 @@ TODO
 
 ##### 9. Describe the way tasks are planned and tracked in your project.
 
-Development was planned using trello.
+Development was tracked and planned using Trello, here are some of the screenshots.
 
-![This is an image of my task planning](https://github.com/morganw-code/ImpulseAuction/tree/master/docs/first-trello.png)
+![This is an image of my task planning](./docs/first-trello.png)
 
-![This is an image of my task planning](https://github.com/morganw-code/ImpulseAuction/tree/master/docs/second-trello.png)
+![This is an image of my task planning](./docs/second-trello.png)
 
-![This is an image of my task planning](https://github.com/morganw-code/ImpulseAuction/tree/master/docs/third-trello.png)
+![This is an image of my task planning](./docs/third-trello.png)
 
-![This is an image of my task planning](https://github.com/morganw-code/ImpulseAuction/tree/master/docs/final-trello.png)
+![This is an image of my task planning](./docs/final-trello.png)
 
 ##### 10. ERD provided represents a normalised database model.
 
-![This is an image of my task planning](https://github.com/morganw-code/ImpulseAuction/tree/master/docs/erd.png)
+![This is an image of my my ERD](./docs/erd.png)
