@@ -54,7 +54,7 @@ NB leave the Titles as they are and answer the questions below.
 ##### 2. List and describe any 3rd party services.
 * Precisely explains and shows understanding of the different high-level components of the app
 
-##### 3.1. Identify the problem you’re trying to solve by building this particular marketplace App?
+c
 * Demonstrates a full understanding of the problems that exist in a relevant marketplace that needs disrupting
 
 

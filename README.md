@@ -114,3 +114,73 @@ Similar to favourites, an order contains two foreign keys to track which listing
         created_at: timestamp
         updated_at: timestamp
         admin: boolean
+
+###### Listings
+
+        id: int8
+        title: varchar
+        description: text
+        starting_price: int4
+        sold: boolean
+        relist: boolean
+        user_id: int8
+        fire_time: timestamp
+        created_at: timestamp
+        updated_at: timestamp
+
+###### Bids
+
+        id: int8
+        user_id: int8
+        listing_id: int8
+        amount: int4
+        created_at: timestamp
+        updated_at: timestamp
+
+###### Favourites
+
+        id: int8
+        user_id: int8
+        listing_id: int8
+        created_at: timestamp
+        updated_at: timestamp
+
+###### Orders
+
+        id: int8
+        user_id: int8
+        listing_id: int8
+        paid: boolean
+        created_at: timestamp
+        updated_at: timestamp
+
+##### 7. Provide User stories for your App.
+
+ImpulseAuction functions in a way that users have the ability to buy and sell with a normal registered account.
+
+###### Admin
+
+        - As an administrator, I want to be able to delete users
+        - As an administrator, I want to be able to delete listings
+
+###### User
+
+        - As a registered user, I want to be able to view listings
+        - As a registered user, I want to be able to create listings
+        - As a registered user, I want to be able to bid on listings
+        - As a registered user, I want to be able to pay when I want to
+        - As a registered user, I want to be able to favourite listings
+        - As a registered user, I do not want to be able to see the admin dashboard
+        - As a registered user, I do not want unregistered users to see my account
+
+##### 8. Provide Wireframes for your App.
+
+TODO
+
+##### 9. Describe the way tasks are planned and tracked in your project.
+
+Development was planned using trello. TODO
+
+##### 10. ERD provided represents a normalised database model.
+
+Put ERD here
