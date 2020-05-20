@@ -35,6 +35,15 @@ body {
     margin: 0;
 }
 
+.listing-content {
+    border: 1px solid white;
+    padding: 1em;
+    img {
+        width: 256px;
+        height: 256px;
+    }
+}
+
 .form-container {
     width: 100%;
     max-width: 330px;

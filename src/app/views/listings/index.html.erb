@@ -22,18 +22,25 @@
             <% for listing in @listings %>
                 <% if(listing.bids.find_by_user_id(current_user) && (listing.active == 1 || listing.active == 2)) %>
                     <div class="col-sm-4 card-ending">
-                        <%= listing.title %>
-                        <br>
-                        <%= image_tag listing.image if listing.image.attached? %>
-                        <% if listing.bids.any? %>
-                            <br>
-                            Highest bidder: <%= listing.bids.order(amount: :desc).first.user_id %>
-                        <% end %>
-                        <br>
-                        $<%= Money.new(listing.starting_price, 'AUD') %>
-                        <br>
-                        <%= (Time.now - listing.fire_time).to_i %>s
-                        <br>
+                        <div class="card-item">
+                            <h2><%= listing.title %></h2>
+                        </div>
+                        <div class="card-item">
+                            <p><%= listing.description %></p>
+                        </div>
+                        <div class="card-item">
+                            <%= (Time.now - listing.fire_time).to_i %>s
+                        </div>
+                        <div class="card-item">
+                            <%= image_tag listing.image if listing.image.attached? %>
+                            <% if listing.bids.any? %>
+                                <br>
+                                Highest bidder: <%= User.find_by_id(listing.bids.order(amount: :desc).first.user_id).email.split("@")[0] %>
+                            <% end %>
+                        </div>
+                        <div class="card-item">
+                            $<%= Money.new(listing.starting_price, 'AUD') %>
+                        </div>
                         <div class="card-item buttons">
                             <%= button_to "Bid", bid_listing_path(listing.id), :class => "btn btn-primary", :method => :patch %>
                             <%= button_to "View", listing_path(listing.id), :class => "btn btn-success", :method => :get %>
@@ -63,7 +70,8 @@
                         <div class="card-item">
                             <%= image_tag listing.image if listing.image.attached? %>
                             <% if listing.bids.any? %>
-                                Highest bidder: <%= listing.bids.order(amount: :desc).first.user_id %>
+                                <br>
+                                Highest bidder: <%= User.find_by_id(listing.bids.order(amount: :desc).first.user_id).email.split("@")[0] %>
                             <% end %>
                         </div>
                         <div class="card-item">
