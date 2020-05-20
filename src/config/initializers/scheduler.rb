@@ -17,6 +17,7 @@ s.every '1s' do
         elsif(listing.active == 2 && Time.now > listing.fire_time + 60.seconds && !listing.sold && listing.bids.count() > 0)
             # select the highest bid for the listing
             @bid = listing.bids.order(amount: :desc).first
+            # create order
             listing.orders.create(:user => @bid.user)
             # set listing as ended & sold
             listing.update(

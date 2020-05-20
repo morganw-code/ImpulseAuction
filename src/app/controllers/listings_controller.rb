@@ -22,13 +22,19 @@ class ListingsController < ApplicationController
 
     def destroy
         @listing = Listing.find_by_id(params[:id])
-        @listing.destroy()
 
-        if @listing.errors.any?
-            render plain: "error"
+        # check if the user responsible for the action owns the listing
+        if(current_user.id == @listing.user_id)
+            @listing.destroy()
+
+            render :back
         else
-            redirect_to :root
+            render plain: ":("
         end
+    end
+
+    def edit
+        @listing = Listing.find_by_id(params[:id])
     end
 
     def new

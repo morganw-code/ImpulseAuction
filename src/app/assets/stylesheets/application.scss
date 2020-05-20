@@ -17,6 +17,13 @@
     flex-direction: $direction;
 }
 
+@mixin flex-center($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
 @mixin reset() {
     border: 0;
     padding: 0;
@@ -27,6 +34,7 @@ body {
     @include reset();
     background-color: map-get($colors, blue-ish);
     color: #FFF;
+    height: 100vh;
 }
 
 .alert, .notice {
@@ -63,6 +71,11 @@ body {
         height: 50px;
         border-radius: 50%;
     }
+}
+
+.buttons-nav {
+    @include flex-between(row);
+    width: 100%;
 }
 
 .container {
@@ -145,5 +158,42 @@ body {
     border: 1px solid red;
     th, td {
         padding: 1em;
+    }
+}
+
+// user dash
+
+.user-dashboard {
+    height: 100%;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+    .user {
+        @include flex-center(column);
+        padding: 1em;
+        background-color: map-get($dark, a);
+    }
+
+    .listings, .favourites {
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        padding: 1em;
+
+        .item {
+            width: 100%;
+            padding: 1em;
+            background-color: map-get($dark, a);
+            border-radius: 10px;
+
+            .buttons {
+                @include flex-between(row)
+            }
+
+            &:nth-child(even) {
+                background-color: map-get($dark, c);
+            }
+        }
     }
 }

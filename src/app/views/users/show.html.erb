@@ -1,1 +1,49 @@
-<h1>work</h1>
+<div class="user-dashboard">
+    <div class="listings">
+        <h1>Listings</h1>
+        <% for item in @listings %>
+            <% if item.user_id == @user.id %>
+                <div class="item">
+                    <h1><%= item.title %></h1>
+                    Status:
+                    <! –– set the status of the listing ––>
+                    <% if item.sold && Order.find_by_listing_id(item.listing_id).paid %>
+                        Buyer has made a payment
+                    <% elsif item.sold %>
+                        Waiting for payment
+                    <% else %>
+                        Waiting for bids...
+                    <% end %>
+
+                    <% if item.user_id == current_user.id %>
+                        <div class="buttons">
+                            <%= button_to "Delete", destroy_listing_path(item.id), :class => "btn btn-danger", :method => "delete" %>
+                            <%= button_to "Edit", edit_listing_path(item.id), :class => "btn btn-success", :method => "get" %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+    <div class="user">
+        <h1><%= @user.email.split("@")[0] %></h1>
+        <% if current_user.id == @user.id %>
+            <%= button_to "Cancel Account", destroy_user_path, :method => "delete" %>
+        <% end %>
+    </div>
+    <div class="favourites">
+        <h1>Favourites ❤</h1>
+        <% for item in @favourites %>
+            <% if item.user_id == @user.id %>
+                <div class="item">
+                    <h1><%= Listing.find_by_id(item.listing_id).title %></h1>
+                    <% if item.user_id == current_user.id %>
+                        <div class="buttons">
+                            <%= button_to "Delete", destroy_favourite_path(item.id), :class => "btn btn-danger", :method => "delete" %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>

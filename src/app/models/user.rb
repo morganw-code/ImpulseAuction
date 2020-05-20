@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :bids, :dependent => :destroy
   has_one_attached :image
   has_many :favourites, :dependent => :destroy
-  has_many :orders, :foreign_key => :user_id
+  has_many :orders, :foreign_key => :user_id, :dependent => :destroy
 end
