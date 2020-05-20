@@ -17,7 +17,7 @@
                             <br>
                             Status: <%= order.paid ? "Paid" : "Waiting for payment" %>
                             <% if !order.paid %>
-                                <%= button_to "Make Payment", "", :class => "btn btn-success", :method => :get %>
+                                <%= button_to "Pay Now", order_path(Listing.find_by_id(order.listing_id)) %>
                             <% end %>
                         </div>
                         <br>
