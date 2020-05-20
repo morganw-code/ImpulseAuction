@@ -7,7 +7,7 @@
                     <h1><%= item.title %></h1>
                     Status:
                     <! –– set the status of the listing ––>
-                    <% if item.sold && Order.find_by_listing_id(item.listing_id).paid %>
+                    <% if item.sold && Order.find_by_listing_id(item.id).paid %>
                         Buyer has made a payment
                     <% elsif item.sold %>
                         Waiting for payment

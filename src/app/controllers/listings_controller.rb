@@ -27,7 +27,7 @@ class ListingsController < ApplicationController
         if(current_user.id == @listing.user_id)
             @listing.destroy()
 
-            render :back
+            redirect_back fallback_location: root_path
         else
             render plain: ":("
         end

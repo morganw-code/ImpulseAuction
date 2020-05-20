@@ -6,11 +6,7 @@ class FavouritesController < ApplicationController
         if(current_user.id == @favourite.user_id)
             @favourite.destroy()
 
-            if @favourite.errors.any?
-                render :back
-            end
-
-            redirect_to :root
+            redirect_back fallback_location: root_path
         else
             render plain: ":("
         end

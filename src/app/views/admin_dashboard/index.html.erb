@@ -17,7 +17,7 @@
                             <tr>
                                 <td><%= user.id %></td>
                                 <td><%= user.email %></td>
-                                <td><%= button_to "delete", admin_dashboard_destroy_user_path(user.id), :method => :delete %></td>
+                                <td><%= button_to "delete", destroy_user_path(user.id), :method => :delete %></td>
                             </tr>
                         <% end %>
                     </table>

@@ -32,9 +32,10 @@
 
 body {
     @include reset();
-    background-color: map-get($colors, blue-ish);
-    color: #FFF;
+    // background-color: map-get($colors, blue-ish);
+    background-color: #696969;
     height: 100vh;
+    color: #FFF;
 }
 
 .alert, .notice {
@@ -59,13 +60,11 @@ body {
     margin: 0 auto;
 }
 
-.listing-holder {
-    color: white;
-}
-
 .order {
     border: 1px solid white;
     padding: 1em;
+    border-radius: 10px;
+    
     img {
         width: 50px;
         height: 50px;
@@ -99,7 +98,6 @@ body {
     .row {
         overflow-x: auto;
         white-space: nowrap;
-        color: white;
         border-radius: 10px;
         .card-active {
             padding: 1em;
@@ -173,6 +171,7 @@ body {
         @include flex-center(column);
         padding: 1em;
         background-color: map-get($dark, a);
+        border-radius: 10px;
     }
 
     .listings, .favourites {

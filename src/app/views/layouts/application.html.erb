@@ -15,7 +15,7 @@
             <%= link_to "ImpulseAuction", root_path, { :class => "navbar-brand" } %>
             <div class="buttons-nav">
                 <%= button_to "Create Listing", new_listing_path, :method=>"get", :class => "btn btn-primary" %>
-                <% if User.find_by_id(current_user.id).admin %>
+                <% if user_signed_in? && User.find_by_id(current_user.id).admin %>
                     <%= button_to "Admin", admin_dashboard_path, :method=>"get", :class => "btn btn-danger" %>
                 <% end %>
             </div>

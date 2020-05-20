@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         if(is_allowed)
             @user.destroy()
 
-            render :back
+            redirect_back fallback_location: root_path
         else
             render plain: ":("
         end
