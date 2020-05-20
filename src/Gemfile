@@ -78,3 +78,7 @@ gem "devise", "~> 4.7"
 gem "aws-sdk-s3", "~> 1.64"
 
 gem "font-awesome-rails", "~> 4.7"
+
+gem "stripe", "~> 5.22"
+
+gem "ultrahook", "~> 0.1.5"
