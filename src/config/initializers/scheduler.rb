@@ -32,7 +32,7 @@ s.every '1s' do
             listing.update(
                 :active => 0,
                 :fire_at => Time.now,
-                :sold => 0
+                :sold => false
             )
         # check if 5 seconds has passed since ended && listing should relist if not sold
         elsif(listing.active == 0 && listing.relist && !listing.sold && Time.now > listing.fire_at + 5.seconds)
