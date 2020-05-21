@@ -8,13 +8,13 @@ s.every '1s' do
     #check if listing has been 
     for listing in @listings
         # check if listing has been up for more than 40 seconds
-        if(listing.active == 1 && Time.now > listing.fire_time + 40.seconds)
+        if(listing.active == 1 && Time.now > listing.fire_at + 40.seconds)
             # set listing as ending soon
             listing.update(
                 :active => 2
             )
         # check if 20 seconds has passed since update and should sell the listing to a user
-        elsif(listing.active == 2 && Time.now > listing.fire_time + 60.seconds && !listing.sold && listing.bids.count() > 0)
+        elsif(listing.active == 2 && Time.now > listing.fire_at + 60.seconds && !listing.sold && listing.bids.count() > 0)
             # select the highest bid for the listing
             @bid = listing.bids.order(amount: :desc).first
             # create order
@@ -22,24 +22,24 @@ s.every '1s' do
             # set listing as ended & sold
             listing.update(
                 :active => 0,
-                :fire_time => Time.now,
+                :fire_at => Time.now,
                 :sold => 1,
                 :relist => 0
             )
         # check if 20 seconds has passed since update && !sold
-        elsif(listing.active == 2 && Time.now > listing.fire_time + 60.seconds && !listing.sold)
+        elsif(listing.active == 2 && Time.now > listing.fire_at + 60.seconds && !listing.sold)
             # set listing as ended
             listing.update(
                 :active => 0,
-                :fire_time => Time.now,
+                :fire_at => Time.now,
                 :sold => 0
             )
         # check if 5 seconds has passed since ended && listing should relist if not sold
-        elsif(listing.active == 0 && listing.relist && !listing.sold && Time.now > listing.fire_time + 5.seconds)
+        elsif(listing.active == 0 && listing.relist && !listing.sold && Time.now > listing.fire_at + 5.seconds)
             # relist
             listing.update(
                 :active => 1,
-                :fire_time => Time.now
+                :fire_at => Time.now
             )
         end
     end

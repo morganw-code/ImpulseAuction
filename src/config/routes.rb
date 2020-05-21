@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   patch "/:id", :to => "bids#bid", :as => "bid_listing"
 
   get "/orders", :to => "orders#index", :as => "orders"
-  post "/order/:id", :to => "orders#show", :as => "order"
+  get "/order/:id", :to => "orders#show", :as => "order"
 
   get "/payments/success", :to => "payments#success"
   post "/", to: "payments#webhook"

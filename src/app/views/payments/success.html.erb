@@ -1,3 +1,5 @@
-<h1>You've successfully made a payment!</h1>
+<div class="show-success">
+    <h1>You've successfully made a payment!</h1>
 
-<%= link_to "Take Me Back", orders_path %>
+    <%= button_to "Take Me Back", orders_path, :class => "btn btn-success", :method => "get" %>
+</div>

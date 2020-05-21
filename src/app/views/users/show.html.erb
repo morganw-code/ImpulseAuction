@@ -26,6 +26,7 @@
         <% end %>
     </div>
     <div class="user">
+        <%= image_tag @user.image if @user.image.attached? %>
         <h1><%= @user.email.split("@")[0] %></h1>
         <% if current_user.id == @user.id %>
             <%= button_to "Cancel Account", destroy_user_path, :method => "delete" %>

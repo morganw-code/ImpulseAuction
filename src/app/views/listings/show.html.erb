@@ -1,26 +1,19 @@
-<div class="container">
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <br>
-            <div class="listing-content" id="refresh-show-listing">
-                <% if @listing.active == 2 || @listing.active == 1 %>
-                    <h1><%= @listing.title %> - <%= (Time.now - @listing.fire_time).to_i %>s</h1>
-                    <br>
-                    <%= image_tag @listing.image if @listing.image.attached? %>
-                    <br>
-                    <%= @listing.description %>
-                    <br>
-                    $<%= Money.new(@listing.starting_price, 'AUD') %>
-                    <div class="card-item buttons">
-                        <%= button_to "Bid", bid_listing_path(@listing.id), :class => "btn btn-primary", :method => :patch %>
-                        <%= button_to "Favourite", listing_favourite_path(@listing.id), :class => "btn btn-warning", :method => :post %>
-                    </div>
-                <% else %>
-                    <p>Listing is no longer available</p>
-                <% end %>
-            </div>
+<div id="refresh-show-listing">
+    <div class="container show-listing">
+        <% if @listing.active == 2 || @listing.active == 1 %>
+        <h1><%= @listing.title %> - <%= (Time.now - @listing.fire_at).to_i %>s</h1>
+        <br>
+        <%= image_tag @listing.image if @listing.image.attached? %>
+        <br>
+        <%= @listing.description %>
+        <br>
+        $<%= Money.new(@listing.starting_price, 'AUD') %>
+        <div class="card-item buttons">
+            <%= button_to "Bid", bid_listing_path(@listing.id), :class => "btn btn-primary", :method => :patch %>
+            <%= button_to "Favourite", listing_favourite_path(@listing.id), :class => "btn btn-warning", :method => :post %>
         </div>
-        <div class="col-3"></div>
+        <% else %>
+            <p>Listing is no longer available</p>
+        <% end %>
     </div>
 </div>

@@ -46,7 +46,7 @@ class ListingsController < ApplicationController
         @listing.update(
             :active => 1,
             :relist => true,
-            :fire_time => Time.now
+            :fire_at => Time.now
         )
         if @listing.errors.any?
             render "new"

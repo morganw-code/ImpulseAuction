@@ -1,4 +1,6 @@
 class FavouritesController < ApplicationController
+    before_action :authenticate_user!
+    
     def destroy
         @favourite = Favourite.find_by_id(params[:id])
 

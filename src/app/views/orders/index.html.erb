@@ -16,8 +16,10 @@
                             <%= image_tag Listing.find_by_id(order.listing_id).image if Listing.find_by_id(order.listing_id).image.attached? %>
                             <br>
                             Status: <%= order.paid ? "Paid" : "Waiting for payment" %>
+                            <br>
+                            $<%= Money.new(Listing.find_by_id(order.listing_id).starting_price, 'AUD') %>
                             <% if !order.paid %>
-                                <%= button_to "Pay Now", order_path(Listing.find_by_id(order.listing_id)) %>
+                                <%= button_to "Pay Now", order_path(Listing.find_by_id(order.listing_id)), :method => "get", :class => "btn btn-primary" %>
                             <% end %>
                         </div>
                         <br>

@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_012014) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "active"
-    t.datetime "fire_time"
+    t.datetime "fire_at"
     t.boolean "sold"
     t.boolean "relist"
     t.bigint "user_id"
