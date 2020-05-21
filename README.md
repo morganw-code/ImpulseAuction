@@ -1,12 +1,16 @@
-# Morgan Webb - T2A2
+# Morgan Webb - T2A2 - ImpulseAuction
 
 ##### 1. Explain the different high-level components (abstractions) in your App.
 
 ImpulseAuction is a two-sided 60-second aution marketplace built using Ruby on Rails.
 
+###### Database
+
+ImpulseAuction uses a RDBMS (Relational Database Management System) called PostgreSQL. The database is responsible for storing information such as user information, listing information, etc.
+
 ###### User Authentication
 
-When a user visits the site, before they can view anything, they must create an account or authenticate themselves with an existing account, granting them access to anything a user may do within the application. The devise gem is used to authenticate these users, and their sessions. Only registered users are allowed to create a listing, view listings, and place a bid on a listing. The administration dashboard is only accessible by administrators.
+User authentication is handled by the Device gem. When a user visits the site, before they can view anything, they must create an account or authenticate themselves with an existing account, granting them access to anything a user may do within the application. The devise gem is used to authenticate these users, and their sessions. Only registered users are allowed to create a listing, view listings, and place a bid on a listing. The administration dashboard is only accessible by administrators.
 
 ###### Listing Creation
 
@@ -48,9 +52,17 @@ Twitter's bootstrap front-end CSS framework is used to style various pages.
 
 Faker is used when seeding the database with data for during development. It is responsible for creating fake data like listing titles, descriptions, etc.
 
+##### Stripe
+
+Stripe is used to provide a secure and reliable payment method for buyers and sellers so that they can trust that their information is secure. Stripe is a popular payment gateway similar to PayPal.
+
 ##### 3.1. Identify the problem you’re trying to solve by building this particular marketplace App?
 
 ImpulseAuction provides a quick and easy solution to buying online where you only have to wait 60 seconds for the outcome of a certain aution! Users do not need to worry about making a payment during the last 60 seconds, once they have won the auction, they may make a payment when it suits them. ImpulseAuction puts the buyer in control, where they are always guaranteed to pay the price that the auction ended with.
+
+##### 3.2 Why is the problem identified a problem that needs solving?
+
+ImpulseAuction provides a platform where buyers and sellers can quickly make purchases or sell a listing in less than 60-seconds. This provides a quick and easy way of shopping/selling online.
 
 ##### Screenshots
 
@@ -187,7 +199,13 @@ ImpulseAuction functions in a way that users have the ability to buy and sell wi
 
 ##### 8. Provide Wireframes for your App.
 
-TODO
+![This is an image of my wireframe](./docs/app-wireframes/home.png)
+
+![This is an image of my wireframe](./docs/app-wireframes/orders.png)
+
+![This is an image of my wireframe](./docs/app-wireframes/user-dash.png)
+
+![This is an image of my wireframe](./docs/app-wireframes/admin-dash.png)
 
 ##### 9. Describe the way tasks are planned and tracked in your project.
 
