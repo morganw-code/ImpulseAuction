@@ -29,7 +29,7 @@
                             <p><%= listing.description %></p>
                         </div>
                         <div class="card-item">
-                            <%= (Time.now - listing.fire_at).to_i %>s
+                            <%= (Time.now - listing.fire_time).to_i %>s
                         </div>
                         <div class="card-item">
                             <%= image_tag listing.image if listing.image.attached? %>
@@ -65,7 +65,7 @@
                             <p><%= listing.description %></p>
                         </div>
                         <div class="card-item">
-                            <%= (Time.now - listing.fire_at).to_i %>s
+                            <%= (Time.now - listing.fire_time).to_i %>s
                         </div>
                         <div class="card-item">
                             <%= image_tag listing.image if listing.image.attached? %>

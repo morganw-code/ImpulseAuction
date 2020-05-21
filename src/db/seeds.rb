@@ -19,7 +19,7 @@ when "development"
             :title => Faker::Commerce.product_name,
             :description => "lorem ipsum",
             :active => active,
-            :fire_at => Time.now - 20.seconds,
+            :fire_time => Time.now - 20.seconds,
             :sold => 0,
             :relist => 1,
             :starting_price => rand(500),

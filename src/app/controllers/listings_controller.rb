@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_listing, :only => [:show, :destroy, :edit, :add_favourite]
-    
+
     def index
         @listings = Listing.all()
         Money.locale_backend = :i18n
@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
         @listing.update(
             :active => 1,
             :relist => true,
-            :fire_at => Time.now,
+            :fire_time => Time.now,
             :sold => false
         )
         if @listing.errors.any?

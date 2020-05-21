@@ -1,7 +1,7 @@
 <div id="refresh-show-listing">
     <div class="container show-listing">
         <% if @listing.active == 2 || @listing.active == 1 %>
-        <h1><%= @listing.title %> - <%= (Time.now - @listing.fire_at).to_i %>s</h1>
+        <h1><%= @listing.title %> - <%= (Time.now - @listing.fire_time).to_i %>s</h1>
         <br>
         <%= image_tag @listing.image if @listing.image.attached? %>
         <br>
