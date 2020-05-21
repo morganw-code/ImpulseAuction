@@ -1,5 +1,17 @@
 # Morgan Webb - T2A2 - ImpulseAuction
 
+Link to deployed application: https://pure-citadel-44141.herokuapp.com/
+
+Link to github repository: https://github.com/morganw-code/ImpulseAuction
+
+##### Stack
+
+        - Front-end : HTML5, SCSS, ERB, BOOTSTRAP4, JQUERY, JAVASCRIPT
+        - Back-end : RAILS, PUMA
+        - Utilities : DEVISE, AWS-S3, STRIPE, RUFUS-SCHEDULER, ULTRAHOOK, MONEY
+        - DevOps : GIT, GITHUB, LUCID CHART, TRELLO
+        - Deployment : HEROKU
+
 ##### 1. Explain the different high-level components (abstractions) in your App.
 
 ImpulseAuction is a two-sided 60-second aution marketplace built using Ruby on Rails.
@@ -32,6 +44,14 @@ Similar to the scheduled task, a JavaScript function gets called every second to
 
 If a listing is in it's active or ending state, it is displayed at the bottom of the screen. If a listing has a bid that belongs to a user that is currently signed in, the listing will also display in the "Live Bids" section for that user. And finally, if a listing has been sold to a user and has ended, the listing will appear at the top of the page under the "Sold" section.
 
+###### Money
+
+The money gem is used to convert listing prices to Australian rates. The prices stored in the listings table is stored in cents, so the gem converts it to dollars.
+
+###### Ultrahook
+
+Ultrahook is used to expose an endpoint in local environment, so that stripe can communicate with the application during development in a local environment.
+
 ##### 2. List and describe any 3rd party services.
 
 These are the following 3rd party services ImpulseAuction uses to function.
@@ -50,7 +70,7 @@ Twitter's bootstrap front-end CSS framework is used to style various pages.
 
 ###### Faker
 
-Faker is used when seeding the database with data for during development. It is responsible for creating fake data like listing titles, descriptions, etc.
+Faker is used for seeding the database with fake data during development. It is responsible for creating fake data like listing titles, descriptions, etc.
 
 ##### Stripe
 
@@ -62,7 +82,7 @@ ImpulseAuction provides a quick and easy solution to buying online where you onl
 
 ##### 3.2 Why is the problem identified a problem that needs solving?
 
-ImpulseAuction provides a platform where buyers and sellers can quickly make purchases or sell a listing in less than 60-seconds. This provides a quick and easy way of shopping/selling online.
+ImpulseAuction provides a platform where buyers and sellers can quickly make purchases or sell a listing in less than 60-seconds. This provides a quick and easy way of shopping/selling online without having to wait days or weeks for the outcome of other auctions online.
 
 ##### Screenshots
 
@@ -151,31 +171,31 @@ ImpulseAuction has the following relations implemented
 
 The User table has many relations that belong to it, each user has zero or many listings, zero or many favourites, and a relation to active_storage_attachments. The relation to the Users table is stored in a foreign key for in related tables.
 
-![This is an image of my wireframe](./docs/db-erd-snippets/users.png)
+![This is an erd snippet image](./docs/db-erd-snippets/users.png)
 
 ###### Listings
 
 A listing belongs to a user, and the user_id foreign key for the User tabe is stored upon listing creation.
 
-![This is an image of my wireframe](./docs/db-erd-snippets/listings.png)
+![This is an erd snippet image](./docs/db-erd-snippets/listings.png)
 
 ###### Favourites
 
 The favourites table is a join table that contains a two foreign keys, a user_id, and a listing_id. These id's are used to keep track of what listing the user favourited and which user favourited that specific listing.
 
-![This is an image of my wireframe](./docs/db-erd-snippets/favourites.png)
+![This is an erd snippet image](./docs/db-erd-snippets/favourites.png)
 
 ###### Orders
 
 Similar to favourites, an order contains two foreign keys to track which listing the order was for and what user placed said order.
 
-![This is an image of my wireframe](./docs/db-erd-snippets/orders.png)
+![This is an erd snippet image](./docs/db-erd-snippets/orders.png)
 
 ###### Bids
 
 The bids table holds a foreign key to the users table and the listings table. This is to keep track of who created the bid and what listing it was for. The amount is also tracked in this table, which updates the total on the starting_price for the listing internally. A bid belongs_to a user and a listing.
 
-![This is an image of my wireframe](./docs/db-erd-snippets/bids.png)
+![This is an erd snippet image](./docs/db-erd-snippets/bids.png)
 
 ##### 6. Provide your database schema design.
 
@@ -248,6 +268,10 @@ ImpulseAuction functions in a way that users have the ability to buy and sell wi
         - As a registered user, I want to be able to favourite listings
         - As a registered user, I do not want to be able to see the admin dashboard
         - As a registered user, I do not want unregistered users to see my account
+        - As a registered user, I want to navigate the site freely
+        - As a registered user, I want to be able to delete listings from a dashboard
+        - As a registered user, I want to be able to edit listings from a dashboard
+        - As a registered user, I want to be able to delete favourites from a dashboard
 
 ##### 8. Provide Wireframes for your App.
 
