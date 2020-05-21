@@ -52,6 +52,18 @@ Faker is used when seeding the database with data for during development. It is 
 
 ImpulseAuction provides a quick and easy solution to buying online where you only have to wait 60 seconds for the outcome of a certain aution! Users do not need to worry about making a payment during the last 60 seconds, once they have won the auction, they may make a payment when it suits them. ImpulseAuction puts the buyer in control, where they are always guaranteed to pay the price that the auction ended with.
 
+##### Screenshots
+
+![This is an image of ImpulseAuction](./docs/app-images/home.png)
+
+![This is an image of ImpulseAuction](./docs/app-images/orders.png)
+
+![This is an image of ImpulseAuction](./docs/app-images/user-dash.png)
+
+![This is an image of ImpulseAuction](./docs/app-images/payment-success.png)
+
+![This is an image of ImpulseAuction](./docs/app-images/admin-dash.png)
+
 ##### 4. Describe your project’s models in terms of the relationships (active record associations) they have with each other.
 
 A user has_many listings, and a listing belongs_to a user
@@ -124,7 +136,7 @@ Similar to favourites, an order contains two foreign keys to track which listing
         sold: boolean
         relist: boolean
         user_id: int8
-        fire_time: timestamp
+        fire_at: timestamp
         created_at: timestamp
         updated_at: timestamp
 
