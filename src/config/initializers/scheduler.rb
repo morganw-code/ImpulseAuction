@@ -22,9 +22,9 @@ s.every '1s' do
             # set listing as ended & sold
             listing.update(
                 :active => 0,
-                :fire_at => Time.now,
-                :sold => 1,
-                :relist => 0
+                :sold => true,
+                :relist => true,
+                :fire_at => Time.now
             )
         # check if 20 seconds has passed since update && !sold
         elsif(listing.active == 2 && Time.now > listing.fire_at + 60.seconds && !listing.sold)
