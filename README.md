@@ -92,13 +92,11 @@ A order belongs_to a listing and a user
 
 A favourite belongs_to a user and a listing
 
-A favourite validates_uniqueness_of a user
-
 A bid belongs_to a user and a listing
 
-A listing belongs_to a user
+A listing belongs_to a user, and a user belongs to a listing
 
-A listing has_many_attached images
+A listing has_one_attached image
 
 A listing has_many bids
 
@@ -106,24 +104,78 @@ A listing has_many favourites
 
 A listing has_many orders
 
+```
+        class Bid < ApplicationRecord
+                belongs_to :user
+                belongs_to :listing
+        end
+
+        class Favourite < ApplicationRecord
+                belongs_to :user
+                belongs_to :listing
+                validates_uniqueness_of :user, :scope => :listing
+        end
+
+        class Listing < ApplicationRecord
+                belongs_to :user
+                has_one_attached :image
+                has_many :bids, :dependent => :destroy
+                has_many :favourites, :dependent => :destroy
+                has_many :orders, :dependent => :destroy
+                validates :title, :description, :starting_price, :image, :relist, presence: true
+        end
+
+        class Order < ApplicationRecord
+                belongs_to :listing
+                belongs_to :user, :foreign_key => :user_id, class_name: "User"
+        end
+
+        class User < ApplicationRecord
+                # Include default devise modules. Others available are:
+                # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+                devise :database_authenticatable, :registerable,
+                        :recoverable, :rememberable, :validatable
+                has_many :listings, dependent: :destroy
+                has_many :bids, :dependent => :destroy
+                has_one_attached :image
+                has_many :favourites, :dependent => :destroy
+                has_many :orders, :foreign_key => :user_id, :dependent => :destroy
+        end
+```
+
 ##### 5. Discuss the database relations to be implemented.
 
 ImpulseAuction has the following relations implemented
 
-###### User
-The User table has many relations, each user has zero or many listings, zero or many favourites, and a relation to active_storage_attachments
+###### Users
 
-###### Listing
+The User table has many relations that belong to it, each user has zero or many listings, zero or many favourites, and a relation to active_storage_attachments. The relation to the Users table is stored in a foreign key for in related tables.
 
-A listing belongs to a user, and the user_id foreign key is stored upon listing creation. 
+![This is an image of my wireframe](./docs/db-erd-snippets/users.png)
 
-###### Favourite
+###### Listings
+
+A listing belongs to a user, and the user_id foreign key for the User tabe is stored upon listing creation.
+
+![This is an image of my wireframe](./docs/db-erd-snippets/listings.png)
+
+###### Favourites
 
 The favourites table is a join table that contains a two foreign keys, a user_id, and a listing_id. These id's are used to keep track of what listing the user favourited and which user favourited that specific listing.
 
-###### Order
+![This is an image of my wireframe](./docs/db-erd-snippets/favourites.png)
+
+###### Orders
 
 Similar to favourites, an order contains two foreign keys to track which listing the order was for and what user placed said order.
+
+![This is an image of my wireframe](./docs/db-erd-snippets/orders.png)
+
+###### Bids
+
+The bids table holds a foreign key to the users table and the listings table. This is to keep track of who created the bid and what listing it was for. The amount is also tracked in this table, which updates the total on the starting_price for the listing internally. A bid belongs_to a user and a listing.
+
+![This is an image of my wireframe](./docs/db-erd-snippets/bids.png)
 
 ##### 6. Provide your database schema design.
 

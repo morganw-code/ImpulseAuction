@@ -4,4 +4,5 @@ class Listing < ApplicationRecord
     has_many :bids, :dependent => :destroy
     has_many :favourites, :dependent => :destroy
     has_many :orders, :dependent => :destroy
+    validates :title, :description, :starting_price, :image, :relist, presence: true
 end
