@@ -12,6 +12,10 @@ Link to github repository: https://github.com/morganw-code/ImpulseAuction
         - DevOps : GIT, GITHUB, LUCID CHART, TRELLO
         - Deployment : HEROKU
 
+##### Sitemap
+
+![This is an image of my sitemap](./docs/sitemap.png)
+
 ##### 1. Explain the different high-level components (abstractions) in your App.
 
 ImpulseAuction is a two-sided 60-second aution marketplace built using Ruby on Rails.
@@ -297,4 +301,4 @@ Development was tracked and planned using Trello, here are some of the screensho
 
 ##### 10. ERD provided represents a normalised database model.
 
-![This is an image of my my ERD](./docs/erd.png)
+![This is an image of my ERD](./docs/erd.png)
